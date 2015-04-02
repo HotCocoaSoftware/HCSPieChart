@@ -103,9 +103,16 @@ static CGFloat const kLegendViewMarginOffSetWithChartLegendContainerView = 6.f;
 }
 
 - (void)toggleLegendButtonAtIndex:(NSInteger)index {
-    if (index > 0) {
-        HCSChartLegendButtonView *button = self.chartLabelButtonArray[index];
-        [button buttonClicked];
+    if (index < 0 || index >= self.chartLabelButtonArray.count) {
+        return;
+    }
+    
+    for (HCSChartLegendButtonView *button in self.chartLabelButtonArray) {
+        if ([self.chartLabelButtonArray indexOfObject:button] == index) {
+            [button buttonClicked];
+        } else {
+            [button buttonSelected:NO];
+        }
     }
 }
 
@@ -113,6 +120,7 @@ static CGFloat const kLegendViewMarginOffSetWithChartLegendContainerView = 6.f;
 
 - (void)didSelectChartLegendButtonView:(HCSChartLegendButtonView *)chartCategoryButton {
     NSUInteger index = [self.chartLabelButtonArray indexOfObject:chartCategoryButton];
+    [self toggleLegendButtonAtIndex:index];
     if ([self.delegate respondsToSelector:@selector(chartLegendContainerView:didSelectLegendAtIndex:)]) {
         [self.delegate chartLegendContainerView:self didSelectLegendAtIndex:index];
     }

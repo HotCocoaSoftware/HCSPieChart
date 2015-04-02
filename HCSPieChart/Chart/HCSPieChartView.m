@@ -391,7 +391,6 @@ static CGFloat const kChartLabelContainerHorizontalMarginOffset = 4.f;
     UITouch *touch = [touches anyObject];
     CGPoint point = [touch locationInView:self.pieChart];
     NSInteger selectedIndex = [self.pieChart getCurrentSelectedOnTouch:point];
-// CHECK
     [self.chartLegendContainerView toggleLegendButtonAtIndex:selectedIndex];
     point.x +=  self.pieChart.frame.origin.x;
     if (selectedIndex >= 0) {

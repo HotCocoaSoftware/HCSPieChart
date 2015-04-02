@@ -23,6 +23,7 @@
 @property (nonatomic, readonly) NSInteger index;
 
 - (void)buttonClicked;
+- (void)buttonSelected:(BOOL)selected;
 - (id)initWithOrigin:(CGPoint)origin withName:(NSString *)text withColor:(UIColor *)color index:(NSInteger)index;
 - (void)shiftOriginToPoint:(CGPoint)newOrigin;
 + (CGFloat)height;

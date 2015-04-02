@@ -764,13 +764,13 @@ static NSUInteger kDefaultSliceZOrder = 100;
     }
 }
 
-#pragma mark - Selection With Notification
+#pragma mark Selection Programmatically With Notification
 
 - (void)selectSlice:(NSInteger)newSelection {
     [self notifyDelegateOfSelectionChangeFrom:_selectedSliceIndex to:newSelection];
 }
 
-#pragma mark - Selection Programmatically Without Notification
+#pragma mark Selection Programmatically Without Notification
 
 - (void)setSliceSelectedAtIndex:(NSInteger)index {
     if(_selectedSliceOffsetRadius <= 0)

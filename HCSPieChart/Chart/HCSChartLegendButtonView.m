@@ -92,7 +92,6 @@ static CGFloat const kDistanceBetweenLegends = 12.f;
 }
 
 - (void)chartLabelButtonisClicked:(HCSChartLegendButtonView *)chartLabelButton {
-    [self buttonClicked];
     if ([self.delegate respondsToSelector:@selector(didSelectChartLegendButtonView:)]){
         [self.delegate didSelectChartLegendButtonView:self];
     }
@@ -100,14 +99,20 @@ static CGFloat const kDistanceBetweenLegends = 12.f;
 
 - (void)buttonClicked {
     self.isClicked = !self.isClicked;
-    self.legendLabel.font = self.isClicked ? [UIFont systemFontOfSize:kLegendTextFontSize + 2] : [UIFont systemFontOfSize:kLegendTextFontSize];
-
+    self.legendLabel.font = self.isClicked ? [UIFont boldSystemFontOfSize:kLegendTextFontSize + 1] : [UIFont systemFontOfSize:kLegendTextFontSize];
+//    self.backgroundColor = self.isClicked ? [UIColor greenColor]: [UIColor clearColor];
     CGFloat delta = self.isClicked ? 2 : -2;
     CGRect frame = self.legendCheckBoxView.frame;
     frame.size = CGSizeMake(frame.size.width + delta, frame.size.height + delta);
     frame.origin.x -= delta/2;
     frame.origin.y -= delta/2;
     self.legendCheckBoxView.frame = frame;
+}
+
+- (void)buttonSelected:(BOOL)selected {
+    if (self.isClicked != selected) {
+        [self buttonClicked];
+    }
 }
 
 @end
